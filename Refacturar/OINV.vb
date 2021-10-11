@@ -24,7 +24,7 @@
             coForm = cSBOApplication.Forms.Item(FormUID)
             lsItemRef = "2"
             loItem = coForm.Items.Add("btReFac", SAPbouiCOM.BoFormItemTypes.it_BUTTON)
-            loItem.Left = coForm.Items.Item(lsItemRef).Left + coForm.Items.Item(lsItemRef).Width + coForm.Items.Item(lsItemRef).Width + coForm.Items.Item(lsItemRef).Width + 30
+            loItem.Left = coForm.Items.Item(lsItemRef).Left + coForm.Items.Item(lsItemRef).Width + coForm.Items.Item(lsItemRef).Width + 60
             loItem.Top = coForm.Items.Item(lsItemRef).Top
             loItem.Width = coForm.Items.Item(lsItemRef).Width + 40
             loItem.Height = coForm.Items.Item(lsItemRef).Height
