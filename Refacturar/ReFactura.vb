@@ -270,7 +270,7 @@
         Dim oORDR As SAPbobsCOM.Documents
         Dim DocEntry, DocCur, OINVSeries, MainUsage As String
         Dim llError As Long
-        Dim lsError As String
+        Dim lsError, OrderDocNum As String
         Dim contador, Order As Integer
         Dim DocTotal As Double
 
@@ -369,10 +369,12 @@
                     stQueryH3 = "Select ""DocNum"" from ORDR where ""DocEntry""=" & Order
                     oRecSetH3.DoQuery(stQueryH3)
 
-                    cSBOApplication.MessageBox("Se creo con exito la Orden " & oRecSetH3.Fields.Item("DocNum").Value)
+                    OrderDocNum = oRecSetH3.Fields.Item("DocNum").Value
+
+                    cSBOApplication.MessageBox("Se creo con exito la Orden " & OrderDocNum)
 
                     UpdateSN(CardCode, DocTotal)
-
+                    UpdateORINA(OrderDocNum)
                     CreateOINV(DocNum, Order, CardCode, psDirectory)
 
                 End If
@@ -573,7 +575,7 @@
 
         Catch ex As Exception
 
-            cSBOApplication.MessageBox("Error al desactivar SN: " & ex.Message)
+            cSBOApplication.MessageBox("Error al actualizar SN: " & ex.Message)
 
         End Try
 
@@ -608,6 +610,38 @@
         Catch ex As Exception
 
             cSBOApplication.MessageBox("Error al desactivar SN: " & ex.Message)
+
+        End Try
+
+    End Function
+
+
+    Public Function UpdateORINA(ByVal OrderDocNum As String)
+
+        Dim oORINA As SAPbobsCOM.Documents
+        Dim llError As Long
+        Dim lsError As String
+
+        Try
+
+            oORINA = cSBOCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oCreditNotes)
+
+            If (oORINA.GetByKey(AORIN) = True) Then
+
+                oORINA.UserFields.Fields.Item("U_ORDR").Value = OrderDocNum
+
+                If oORINA.Update() <> 0 Then
+
+                    cSBOCompany.GetLastError(llError, lsError)
+                    Err.Raise(-1, 1, lsError)
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+
+            cSBOApplication.MessageBox("Error al Actualizar Nota de Crédito: " & ex.Message)
 
         End Try
 
