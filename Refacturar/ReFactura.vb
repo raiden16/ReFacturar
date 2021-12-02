@@ -129,7 +129,7 @@
 
         Try
 
-            stQueryH = "Select T0.""DocEntry"",T0.""Series"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",""VatSum"",T2.""U_B1SYS_MainUsage"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" where T0.""DocNum""=" & DocNum
+            stQueryH = "Select T0.""DocEntry"",T0.""Series"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",""VatSum"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" where T0.""DocNum""=" & DocNum
             oRecSetH.DoQuery(stQueryH)
 
             If oRecSetH.RecordCount > 0 Then
