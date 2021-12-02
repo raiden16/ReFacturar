@@ -129,7 +129,7 @@
 
         Try
 
-            stQueryH = "Select T0.""DocEntry"",T0.""Series"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",""VatSum"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" where T0.""DocNum""=" & DocNum
+            stQueryH = "Select T0.""DocEntry"",T0.""Series"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",""VatSum"",T2.""U_B1SYS_MainUsage"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" where T0.""DocNum""=" & DocNum
             oRecSetH.DoQuery(stQueryH)
 
             If oRecSetH.RecordCount > 0 Then
@@ -282,7 +282,7 @@
 
         Try
 
-            stQueryH = "Select T0.""DocEntry"",T3.""Series"",T0.""U_B1SYS_MainUsage"",T0.""TrnspCode"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",T0.""NumAtCard"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" Inner Join NNM1 T2 on T2.""Series""=T0.""Series"" and T2.""ObjectCode""=T0.""ObjType"" Inner Join NNM1 T3 on T3.""SeriesName""=T2.""SeriesName"" and T3.""ObjectCode""=17 where T0.""DocNum""=" & DocNum
+            stQueryH = "Select T0.""DocEntry"",T3.""Series"",T4.""U_B1SYS_MainUsage"",T0.""TrnspCode"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",T0.""NumAtCard"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" Inner Join NNM1 T2 on T2.""Series""=T0.""Series"" and T2.""ObjectCode""=T0.""ObjType"" Inner Join NNM1 T3 on T3.""SeriesName""=T2.""SeriesName"" and T3.""ObjectCode""=17 Inner Join OCRD T4 on T4.""CardCode""=T0.""CardCode"" where T0.""DocNum""=" & DocNum
             oRecSetH.DoQuery(stQueryH)
 
             If oRecSetH.RecordCount > 0 Then
@@ -409,7 +409,7 @@
 
         Try
 
-            stQueryH = "Select T0.""DocEntry"",T2.""Series"",T0.""U_B1SYS_MainUsage"",T0.""TrnspCode"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",T0.""NumAtCard"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" Inner Join NNM1 T2 on T2.""Series""=T0.""Series"" and T2.""ObjectCode""=T0.""ObjType"" where T0.""DocNum""=" & DocNum
+            stQueryH = "Select T0.""DocEntry"",T2.""Series"",T3.""U_B1SYS_MainUsage"",T0.""TrnspCode"",T0.""CardCode"",T0.""SlpCode"",T0.""Project"",T0.""DocTotal"",T0.""DocCur"",T0.""DocType"",T1.""ReportID"",T0.""NumAtCard"" from OINV T0 Left Outer Join ECM2 T1 on T1.""SrcObjAbs""=T0.""DocEntry"" and T1.""SrcObjType""=T0.""ObjType"" Inner Join NNM1 T2 on T2.""Series""=T0.""Series"" and T2.""ObjectCode""=T0.""ObjType"" Inner Join OCRD T3 on T3.""CardCode""=T0.""CardCode"" where T0.""DocNum""=" & DocNum
             oRecSetH.DoQuery(stQueryH)
 
             If oRecSetH.RecordCount > 0 Then
